@@ -5,8 +5,11 @@ import { firestore } from "./initialize";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import { useNavigate } from "react-router";
 import VectorTR from "./assets/Vector.svg";
+import Logo from "./assets/logo.svg";
 import EllipseInner from "./assets/ellipse_inner.svg";
 import EllipseOuter from "./assets/ellipse_outer.svg";
+import Keep from "./assets/Group 1.svg";
+import Up from "./assets/Group 2.svg";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
@@ -93,12 +96,19 @@ function App() {
           flexDirection: "column",
         }}
       >
+        <div style={{ display: "flex" }}>
+          <img src={Logo} />
+        </div>
         <div
           className="text-yellow-500 text-4xl font-bold"
-          style={{ marginBottom: "10vh" }}
-        >
-          Keep Up!
-        </div>
+          style={{ marginBottom: "2.5vh" }}
+        />
+        <img src={Up} style={{ marginBottom: "15px" }} />
+        <img src={Keep} />
+        <div
+          className="text-yellow-500 text-4xl font-bold"
+          style={{ marginBottom: "2.5vh" }}
+        />
         <div>
           <button
             type="button"
