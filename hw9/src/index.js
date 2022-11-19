@@ -7,6 +7,7 @@ import DashboardPage from "./dashboard";
 import RoomDisplay from "./roomDisplay";
 import Task from "./task";
 import Sidebar from "./sidebar";
+import UsersPage from "./user";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +19,7 @@ root.render(
         <Route path="/roomDisplay" element={<RoomDisplay />} />
         <Route path="/task" element={<Task />} />
         <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/users" element={<UsersPage />} />
       </Routes>
     </Router>
   </React.StrictMode>
