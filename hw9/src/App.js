@@ -5,6 +5,8 @@ import { firestore } from "./initialize";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import { useNavigate } from "react-router";
 import VectorTR from "./assets/Vector.svg";
+import EllipseInner from "./assets/ellipse_inner.svg";
+import EllipseOuter from "./assets/ellipse_outer.svg";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
@@ -70,6 +72,14 @@ function App() {
   return (
     <div>
       <img src={VectorTR} style={{ float: "right", height: "100vh" }}></img>
+      <img
+        src={EllipseOuter}
+        style={{ float: "left", height: "45vh", position: "fixed", bottom: 0 }}
+      ></img>
+      <img
+        src={EllipseInner}
+        style={{ float: "left", height: "30vh", position: "fixed", bottom: 0 }}
+      ></img>
       <div
         style={{
           position: "absolute",
@@ -78,10 +88,24 @@ function App() {
           alignItems: "center",
           width: "100vw",
           height: "100vh",
+          flexDirection: "column",
         }}
       >
-        <button onClick={GoogleLogin}>Auth</button>
-        <div>{curUserData ? curUserData.name : "Test"}</div>
+        <div
+          className="text-yellow-500 text-4xl font-bold"
+          style={{ marginBottom: "10vh" }}
+        >
+          Keep Up!
+        </div>
+        <div>
+          <button
+            type="button"
+            class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2"
+            onClick={GoogleLogin}
+          >
+            LOG IN
+          </button>
+        </div>
       </div>
     </div>
   );

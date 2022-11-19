@@ -1,5 +1,7 @@
-import React from "react";
-function DashboardPage() {
+import React, { useState } from "react";
+function DashboardPage({ clientInfo }) {
+  const [curClientInfo, setCurCleintInfo] = useState(clientInfo);
+  console.log(curClientInfo);
   return <div>Dashboard</div>;
 }
 
