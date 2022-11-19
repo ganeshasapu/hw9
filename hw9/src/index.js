@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DashboardPage from "./dashboard";
+import Example from "./task";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,6 +13,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/task" element={<Example />} />
       </Routes>
     </Router>
   </React.StrictMode>

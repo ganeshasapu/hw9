@@ -7,6 +7,7 @@ function DashboardPage({ props }) {
   return <div>{curClientInfo}</div>;
 }
 
+
 export default DashboardPage;
 
 /*
