@@ -5,6 +5,8 @@ import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DashboardPage from "./dashboard";
 import RoomDisplay from "./roomDisplay";
+import Task from "./task";
+import Sidebar from "./sidebar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +14,10 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/roomDisplay" element={<RoomDisplay />} />
+        <Route path="/task" element={<Task />} />
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -12,7 +12,7 @@ export default function RoomDisplay({ roomID }) {
   const roomCollectionRef = collection(firestore, "rooms");
   const usersCollectionRef = collection(firestore, "users");
 
-  roomID = "7tjA0vI7BbBsGLwRNAxe";
+  roomID = "6f2iBYYI7xMJqE96YpDa";
 
   useEffect(() => {
     var rooms = [];
@@ -43,6 +43,7 @@ export default function RoomDisplay({ roomID }) {
     getRoomID();
   }, []);
 
+  console.log(allUsers, roomInfo, roomUsers);
   if (allUsers.length != 0 && roomInfo.length != 0 && roomUsers.length == 0) {
     var currentRoomUsers = [];
     for (let user in allUsers) {
@@ -90,41 +91,25 @@ export default function RoomDisplay({ roomID }) {
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Title
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Status
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Role
-                    </th>
-                    <th
-                      scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-6"
-                    >
-                      <span className="sr-only">Edit</span>
-                    </th>
+                    {roomInfo.activities ? (
+                      roomInfo.activities.map((activity) => {
+                        return (
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-1 pr-1 text-left text-xs font-light text-gray-900 sm:pl-6"
+                          >
+                            {activity.name}
+                          </th>
+                        );
+                      })
+                    ) : (
+                      <div />
+                    )}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {roomUsers.map((person) => (
-                    <tr key={person.uid}>
+                    <tr key={person.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                         <div className="flex items-center">
                           <div className="h-10 w-10 flex-shrink-0">

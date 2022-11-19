@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router";
+import Sidebar from "./sidebar";
+import Grid from "./grid";
 function DashboardPage({ props }) {
   const { state } = useLocation();
   console.log(state);
   const [curClientInfo, setCurClientInfo] = useState(props);
-  return <div>{curClientInfo}</div>;
+
+  return (
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ justifyContent: "center" }}>
+        <Grid />
+      </div>
+    </div>
+  );
 }
 
 export default DashboardPage;
