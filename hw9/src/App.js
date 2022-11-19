@@ -8,12 +8,21 @@ import { addDoc, collection } from "@firebase/firestore";
 import { setDoc } from "@firebase/firestore";
 import { getDoc } from "@firebase/firestore";
 import { doc } from "@firebase/firestore";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
   const messageRef = useRef();
   const rooms = collection(firestore, "rooms");
   const users = collection(firestore, "users");
+
+  const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    // 👇️ navigate to /contacts
+    navigate("/login");
+  };
 
   const addRoom = async (e) => {
     e.preventDefault();
@@ -36,20 +45,6 @@ function App() {
         email: result.user.email,
       };
 
-      console.log(auth.currentUser);
-      const user = auth.currentUser;
-      if (user !== null) {
-        // The user object has basic properties such as display name, email, etc.
-        const displayName = user.displayName;
-        const email = user.email;
-        const photoURL = user.photoURL;
-        const emailVerified = user.emailVerified;
-
-        // The user's ID, unique to the Firebase project. Do NOT use
-        // this value to authenticate with your backend server, if
-        // you have one. Use User.getToken() instead.
-        const uid = user.uid;
-      }
       //addDoc(users, userData);
     } catch (error) {
       console.log(error);
@@ -59,7 +54,13 @@ function App() {
     <div>
       <button onClick={GoogleLogin}>Auth</button>
       <input type="text" ref={messageRef} />
-      <button type="submit" onClick={addRoom}>
+      <button
+        type="submit"
+        onClick={(e) => {
+          addRoom(e);
+          navigateToLogin();
+        }}
+      >
         Save
       </button>
       <div>Home</div>
