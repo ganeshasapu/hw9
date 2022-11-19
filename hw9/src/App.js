@@ -11,6 +11,7 @@ function App() {
   const rooms = collection(firestore, "rooms");
 
   const [users, setUsers] = useState([]);
+  const [curUserData, setCurUserData] = useState(null);
   const usersCollectionRef = collection(firestore, "users");
 
   useEffect(() => {
@@ -58,15 +59,21 @@ function App() {
       };
 
       var is_new = true;
+
       for (let i = 0; i < users.length; i++) {
         if (users[i].uid == result.user.uid) {
           is_new = false;
-        } else {
+          userData = users[i];
+          break;
         }
       }
       if (is_new) {
+        console.log("New");
         addDoc(usersCollectionRef, userData);
+      } else {
+        console.log("Existing");
       }
+      setCurUserData(userData);
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +92,7 @@ function App() {
         Save
       </button>
       <div>Home</div>
+      <div>{curUserData ? curUserData.name : "Test"}</div>
     </div>
   );
 }
