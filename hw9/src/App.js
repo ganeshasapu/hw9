@@ -5,13 +5,15 @@ import React, { useRef } from "react";
 import { async } from "@firebase/util";
 import { firestore } from "./initialize";
 import { addDoc, collection } from "@firebase/firestore";
+import { setDoc } from "@firebase/firestore";
+import { getDoc } from "@firebase/firestore";
+import { doc } from "@firebase/firestore";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
   const messageRef = useRef();
-  const ref = collection(firestore, "rooms");
-
-  console.log(ref);
+  const rooms = collection(firestore, "rooms");
+  const users = collection(firestore, "users");
 
   const addRoom = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ function App() {
     };
 
     try {
-      addDoc(ref, data);
+      addDoc(rooms, data);
     } catch (e) {
       console.log(e);
     }
@@ -29,7 +31,26 @@ function App() {
   const GoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      console.log(result.user);
+      let userData = {
+        name: result.user.displayName,
+        email: result.user.email,
+      };
+
+      console.log(auth.currentUser);
+      const user = auth.currentUser;
+      if (user !== null) {
+        // The user object has basic properties such as display name, email, etc.
+        const displayName = user.displayName;
+        const email = user.email;
+        const photoURL = user.photoURL;
+        const emailVerified = user.emailVerified;
+
+        // The user's ID, unique to the Firebase project. Do NOT use
+        // this value to authenticate with your backend server, if
+        // you have one. Use User.getToken() instead.
+        const uid = user.uid;
+      }
+      //addDoc(users, userData);
     } catch (error) {
       console.log(error);
     }
