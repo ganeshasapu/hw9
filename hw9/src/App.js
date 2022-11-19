@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { firestore } from "./initialize";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
 import { useNavigate } from "react-router";
+import VectorTR from "./assets/Vector.svg";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
@@ -31,22 +32,9 @@ function App() {
 
   const navigate = useNavigate();
 
-  const navigateToLogin = () => {
+  const navigateToDashboard = () => {
     // 👇️ navigate to /contacts
-    navigate("/login");
-  };
-
-  const addRoom = async (e) => {
-    e.preventDefault();
-    let data = {
-      message: messageRef.current.value,
-    };
-
-    try {
-      addDoc(rooms, data);
-    } catch (e) {
-      console.log(e);
-    }
+    navigate("/dashboard");
   };
 
   const GoogleLogin = async () => {
@@ -74,25 +62,27 @@ function App() {
         console.log("Existing");
       }
       setCurUserData(userData);
+      navigateToDashboard();
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
-      <button onClick={GoogleLogin}>Auth</button>
-      <input type="text" ref={messageRef} />
-      <button
-        type="submit"
-        onClick={(e) => {
-          addRoom(e);
-          navigateToLogin();
+      <img src={VectorTR} style={{ float: "right", height: "100vh" }}></img>
+      <div
+        style={{
+          position: "absolute",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100vw",
+          height: "100vh",
         }}
       >
-        Save
-      </button>
-      <div>Home</div>
-      <div>{curUserData ? curUserData.name : "Test"}</div>
+        <button onClick={GoogleLogin}>Auth</button>
+        <div>{curUserData ? curUserData.name : "Test"}</div>
+      </div>
     </div>
   );
 }
