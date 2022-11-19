@@ -10,8 +10,6 @@ import EllipseOuter from "./assets/ellipse_outer.svg";
 
 function App() {
   const googleProvider = new GoogleAuthProvider();
-  const messageRef = useRef();
-  const rooms = collection(firestore, "rooms");
 
   const [users, setUsers] = useState([]);
   const [curUserData, setCurUserData] = useState(null);
@@ -30,20 +28,19 @@ function App() {
     getUsers();
   }, []);
 
-  if (curUserData != null) {
-    //called after user is authenticated
-    navigateToDashboard();
-  }
-
   console.log(users);
 
   const navigate = useNavigate();
 
   const navigateToDashboard = () => {
-    // 👇️ navigate to /contacts
     console.log(curUserData);
     navigate("/dashboard", { state: { test: curUserData } });
   };
+
+  if (curUserData != null) {
+    //called after user is authenticated
+    navigateToDashboard();
+  }
 
   const GoogleLogin = async () => {
     try {
@@ -108,7 +105,7 @@ function App() {
             class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2"
             onClick={GoogleLogin}
           >
-            LOG IN
+            SIGN IN WITH GOOGLE
           </button>
         </div>
       </div>
