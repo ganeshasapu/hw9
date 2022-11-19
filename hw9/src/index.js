@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { LoginPage } from "./login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DashboardPage from "./dashboard";
+import Example from "./task";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,7 +12,8 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/task" element={<Example />} />
       </Routes>
     </Router>
   </React.StrictMode>
