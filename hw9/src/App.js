@@ -30,13 +30,19 @@ function App() {
     getUsers();
   }, []);
 
+  if (curUserData != null) {
+    //called after user is authenticated
+    navigateToDashboard();
+  }
+
   console.log(users);
 
   const navigate = useNavigate();
 
   const navigateToDashboard = () => {
     // 👇️ navigate to /contacts
-    navigate("/dashboard");
+    console.log(curUserData);
+    navigate("/dashboard", { state: { test: curUserData } });
   };
 
   const GoogleLogin = async () => {
@@ -64,7 +70,6 @@ function App() {
         console.log("Existing");
       }
       setCurUserData(userData);
-      navigateToDashboard();
     } catch (error) {
       console.log(error);
     }

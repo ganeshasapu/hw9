@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-function DashboardPage({ clientInfo }) {
-  const [curClientInfo, setCurCleintInfo] = useState(clientInfo);
-  console.log(curClientInfo);
-  return <div>Dashboard</div>;
+import { useLocation } from "react-router";
+function DashboardPage({ props }) {
+  const { state } = useLocation();
+  console.log(state);
+  const [curClientInfo, setCurClientInfo] = useState(props);
+  return <div>{curClientInfo}</div>;
 }
 
 export default DashboardPage;
