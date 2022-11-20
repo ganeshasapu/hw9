@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import moment from "moment";
 
-export default function RoomDisplay({ roomID }) {
+export default function RoomDisplay({}) {
   const [allUsers, setAllUsers] = useState([]);
   const [roomInfo, setRoomInfo] = useState({});
   const [roomUsers, setRoomUsers] = useState([]);
@@ -19,13 +19,13 @@ export default function RoomDisplay({ roomID }) {
   const roomCollectionRef = collection(firestore, "rooms");
   const usersCollectionRef = collection(firestore, "users");
 
-  roomID = "6f2iBYYI7xMJqE96YpDa";
-
   const navigate = useNavigate();
 
   function navigateToDash() {
     navigate("/dashboard", { state: { test: state.test } });
   }
+
+  let roomID = state.roomId;
 
   useEffect(() => {
     var rooms = [];
@@ -57,6 +57,7 @@ export default function RoomDisplay({ roomID }) {
   }, []);
 
   if (allUsers.length != 0 && roomInfo.length != 0 && roomUsers.length == 0) {
+    console.log(allUsers, roomInfo, roomUsers);
     var currentRoomUsers = [];
     for (let user in allUsers) {
       if (roomInfo.userIds.includes(allUsers[user].uid)) {
@@ -71,7 +72,6 @@ export default function RoomDisplay({ roomID }) {
         if (!currentRoomUsers.includes(personData)) {
           currentRoomUsers.push(personData);
         } else {
-          console.log("Test");
         }
       }
     }
@@ -149,6 +149,7 @@ export default function RoomDisplay({ roomID }) {
                       roomInfo.activities.map((activity) => {
                         return (
                           <th
+                            key={activity.name}
                             scope="col"
                             className="py-3.5 pl-1 pr-1 text-left text-xs font-light text-gray-900 sm:pl-6"
                           >
@@ -157,7 +158,7 @@ export default function RoomDisplay({ roomID }) {
                         );
                       })
                     ) : (
-                      <div />
+                      <td />
                     )}
                   </tr>
                 </thead>
