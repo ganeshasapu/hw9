@@ -1,5 +1,8 @@
 import { auth, firestore } from "./initialize";
 import { addDoc, collection, getDocs } from "@firebase/firestore";
+import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import { useState } from "react";
 const tasks = [
   { id: 1, name: "Studying", points: 10 },
   { id: 2, name: "Job Search", points: 9 },
@@ -13,7 +16,19 @@ const tasks = [
   { id: 10, name: "Meditation", points: 5 },
 ];
 
-export default function Task() {
+export default function Task(props) {
+  const { state } = useLocation();
+  console.log(state);
+
+  const [curClientInfo, setCurClientInfo] = useState(props);
+  const [curUserData, setCurUserData] = useState(null);
+
+  const navigate = useNavigate();
+
+  const navigateToDashboard = () => {
+    navigate("/dashboard", { state: { test: state.test } });
+  };
+
   return (
     <div className="m-8">
       <fieldset>
@@ -73,6 +88,7 @@ export default function Task() {
               };
               console.log(roomData);
               addDoc(roomsCollectionRef, roomData);
+              navigateToDashboard();
             }}
           >
             Submit
