@@ -5,7 +5,6 @@ import Grid from "./grid";
 function DashboardPage({ props }) {
   const { state } = useLocation();
   console.log(state);
-  const [curClientInfo, setCurClientInfo] = useState(props);
 
   return (
     <div style={{ display: "flex" }}>

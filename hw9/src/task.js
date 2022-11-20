@@ -62,13 +62,14 @@ export default function Task() {
                 activities.push(Data);
               }
             }
-            let userData = {
+            let roomData = {
               activities: activities,
               ownerId: auth.currentUser.uid,
               userIds: [auth.currentUser.uid],
+              scores: {},
             };
-            console.log(userData);
-            addDoc(roomsCollectionRef, userData);
+            console.log(roomData);
+            addDoc(roomsCollectionRef, roomData);
           }}
         >
           Input
