@@ -13,7 +13,7 @@ function classNames(...classes) {
 
 export default function Sidebar() {
   return (
-    <div>
+    <div style={{ width: "20vw" }}>
       <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4">
         <div className="flex flex-shrink-0 items-center space-y-5 px-4">
           <img

@@ -31,8 +31,6 @@ function App() {
     getUsers();
   }, []);
 
-  console.log(users);
-
   const navigate = useNavigate();
 
   const navigateToDashboard = () => {
@@ -52,6 +50,7 @@ function App() {
         name: result.user.displayName,
         email: result.user.email,
         uid: result.user.uid,
+        roomsIn: [],
       };
 
       var is_new = true;
