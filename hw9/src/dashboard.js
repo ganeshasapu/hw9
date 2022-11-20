@@ -8,6 +8,11 @@ import { useEffect } from "react";
 import { collection } from "@firebase/firestore";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router";
+import v1 from "./assets/v1.svg";
+import v2 from "./assets/v2.svg";
+import Logo from "./assets/logo.svg";
+import Keep from "./assets/Group 1.svg";
+import Up from "./assets/Group 2.svg";
 
 function DashboardPage({ props }) {
   const { state } = useLocation();
@@ -64,15 +69,25 @@ function DashboardPage({ props }) {
 
   return (
     <div style={{ display: "flex" }}>
-      <div style={{ width: "20vw" }}>
-        <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4">
-          <div className="flex flex-shrink-0 items-center space-y-5 px-4">
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-          </div>
+      <img
+        src={v1}
+        style={{
+          position: "absolute",
+          left: "50vw",
+          zIndex: "-1",
+        }}
+      />
+      <img
+        src={v2}
+        style={{
+          position: "absolute",
+          left: "0vw",
+          zIndex: "-1",
+        }}
+      />
+      <div style={{ width: "20vw", height: "100vh" }}>
+        <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 pb-4 min-h-full">
+          <div className="flex flex-shrink-0 items-center space-y-5 px-4"></div>
           <div className="mt-5 flex flex-grow flex-col">
             <nav className="flex-1 space-y-1 bg-white" aria-label="Sidebar">
               {navigation.map((item) => (
@@ -83,7 +98,7 @@ function DashboardPage({ props }) {
                   }}
                   className={classNames(
                     item.current
-                      ? "bg-indigo-50 border-indigo-600 text-indigo-600"
+                      ? "bg-yellow-50 border-yellow-600 text-yellow-600"
                       : "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                     "group flex items-center px-3 py-2 text-sm font-medium border-l-4"
                   )}
